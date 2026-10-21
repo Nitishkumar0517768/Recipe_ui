@@ -8,28 +8,22 @@ import RecipeCard from "@/components/RecipeCard";
 export default function RecipesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  // Filter recipes based on selected tab
   const filteredRecipes = selectedCategory === "all"
     ? recipesData
     : recipesData.filter((recipe) => recipe.category === selectedCategory);
 
-  // Grouped sections for "All" view
   const quickMeals = recipesData.filter((r) => r.category === "quick-meals");
   const plantBased = recipesData.filter((r) => r.category === "plant-based");
   const bakingGrains = recipesData.filter((r) => r.category === "baking-grains");
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-6">
-      
-
-      {/* Breadcrumb */}
       <div className="text-xs text-stone-500 mb-3 flex items-center gap-2">
         <span className="text-stone-400">Recipes</span>
         <span>/</span>
         <span className="text-stone-700 font-medium">All Categories</span>
       </div>
 
-      {/* Header Title */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold tracking-tight text-stone-900 mb-2">
           Recipe Catalog Index
@@ -39,7 +33,6 @@ export default function RecipesPage() {
         </p>
       </div>
 
-      {/* Category Filter Tabs */}
       <div className="flex flex-wrap items-center gap-2 mb-8">
         <button
           onClick={() => setSelectedCategory("all")}
@@ -97,8 +90,6 @@ export default function RecipesPage() {
         </button>
       </div>
 
-
-      {/* When filtering by a single category */}
       {selectedCategory !== "all" ? (
         <div className="mb-12">
           <div className="flex items-center justify-between mb-4 pb-2 border-b border-stone-200">
@@ -119,10 +110,7 @@ export default function RecipesPage() {
           </div>
         </div>
       ) : (
-        /* Default Categorized View matching Image 5 */
         <div className="space-y-12">
-          
-          {/* Section 1: Quick Meals */}
           <section>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
@@ -148,7 +136,6 @@ export default function RecipesPage() {
             </div>
           </section>
 
-          {/* Section 2: Plant-Based */}
           <section>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
@@ -174,7 +161,6 @@ export default function RecipesPage() {
             </div>
           </section>
 
-          {/* Section 3: Baking & Grains */}
           <section>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
@@ -199,11 +185,9 @@ export default function RecipesPage() {
               ))}
             </div>
           </section>
-
         </div>
       )}
 
-      {/* Bottom Testing Box */}
       <div className="mt-14 bg-stone-50 border border-stone-200 rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-stone-600">
         <div className="flex items-start gap-2.5">
           <span className="text-base text-stone-400">🌱</span>
@@ -227,7 +211,6 @@ export default function RecipesPage() {
           </Link>
         </div>
       </div>
-
     </div>
   );
 }

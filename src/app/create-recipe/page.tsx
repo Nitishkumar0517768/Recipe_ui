@@ -10,14 +10,12 @@ type IngredientRow = {
 };
 
 export default function CreateRecipePage() {
-  // Form state
   const [title, setTitle] = useState("");
   const [cuisine, setCuisine] = useState("");
   const [prepTime, setPrepTime] = useState("");
   const [difficulty, setDifficulty] = useState("Easy");
   const [description, setDescription] = useState("");
 
-  // Ingredients rows state
   const [ingredients, setIngredients] = useState<IngredientRow[]>([
     { id: 1, quantity: "400g", name: "Extra-firm tofu, drained and pressed" },
     { id: 2, quantity: "2 tbsp", name: "Toasted sesame oil" },
@@ -26,7 +24,6 @@ export default function CreateRecipePage() {
 
   const [notification, setNotification] = useState<string | null>(null);
 
-  // Add new ingredient row
   const addIngredientRow = () => {
     setIngredients((prev) => [
       ...prev,
@@ -34,12 +31,10 @@ export default function CreateRecipePage() {
     ]);
   };
 
-  // Remove ingredient row
   const removeIngredientRow = (id: number) => {
     setIngredients((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // Update ingredient row field
   const updateIngredient = (id: number, field: "quantity" | "name", value: string) => {
     setIngredients((prev) =>
       prev.map((item) => (item.id === id ? { ...item, [field]: value } : item))
@@ -59,11 +54,8 @@ export default function CreateRecipePage() {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-[calc(100vh-64px)] bg-[#FCFAF6]">
-      
-      {/* Left Sidebar matching Screenshot 2 */}
       <aside className="w-full lg:w-64 bg-white border-r border-stone-200 p-5 flex flex-col justify-between shrink-0">
         <div>
-          {/* Studio Brand */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-7 h-7 bg-[#C2410C] text-white font-bold flex items-center justify-center rounded text-xs">
               ER
@@ -74,7 +66,6 @@ export default function CreateRecipePage() {
             </div>
           </div>
 
-          {/* Navigation Links */}
           <nav className="space-y-1 mb-8 text-sm">
             <div className="flex items-center gap-2.5 px-3 py-2 bg-[#C2410C] text-white rounded font-medium">
               <span>✎</span>
@@ -108,17 +99,13 @@ export default function CreateRecipePage() {
           </div>
         </div>
 
-        {/* Sidebar Footer */}
         <div className="text-[11px] text-stone-400 pt-6 border-t border-stone-100 space-y-1">
           <div className="hover:text-stone-600 cursor-pointer">📖 Documentation</div>
           <div>© 2025 Everyday Recipes</div>
         </div>
       </aside>
 
-      {/* Main Studio Content Area */}
       <main className="flex-1 p-6 lg:p-10 max-w-5xl">
-        
-        {/* Notification Toast */}
         {notification && (
           <div className="mb-6 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-md flex items-center justify-between">
             <span>✓ {notification}</span>
@@ -126,14 +113,12 @@ export default function CreateRecipePage() {
           </div>
         )}
 
-        {/* Breadcrumb */}
         <div className="text-xs text-stone-500 mb-2 flex items-center gap-2">
           <span>Studio</span>
           <span>/</span>
           <span className="text-stone-800 font-medium">New Recipe Draft</span>
         </div>
 
-        {/* Page Title & Status */}
         <div className="flex items-center justify-between mb-2">
           <h1 className="text-3xl font-bold tracking-tight text-stone-900">
             Create Recipe
@@ -147,18 +132,13 @@ export default function CreateRecipePage() {
           Enter recipe parameters, ingredients, and sequential preparation instructions for the culinary index.
         </p>
 
-        {/* Form Container */}
         <form onSubmit={handlePublish} className="space-y-8">
-          
-          {/* Box 1: Recipe Parameters */}
           <div className="bg-white border border-stone-200 rounded-lg p-6 shadow-xs">
             <h2 className="text-base font-semibold text-stone-900 mb-5">
               Recipe Parameters
             </h2>
 
             <div className="space-y-4 text-xs">
-              
-              {/* Row 1: Title and Cuisine */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
                 <div className="md:col-span-8">
                   <label className="block text-stone-700 font-medium mb-1.5">
@@ -193,7 +173,6 @@ export default function CreateRecipePage() {
                 </div>
               </div>
 
-              {/* Row 2: Prep Time and Difficulty */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
                 <div className="md:col-span-6">
                   <label className="block text-stone-700 font-medium mb-1.5">
@@ -230,7 +209,6 @@ export default function CreateRecipePage() {
                 </div>
               </div>
 
-              {/* Row 3: Short Description */}
               <div>
                 <label className="block text-stone-700 font-medium mb-1.5">
                   Short Description
@@ -246,11 +224,9 @@ export default function CreateRecipePage() {
                   Recommended 100-140 characters for indexing notebooks.
                 </span>
               </div>
-
             </div>
           </div>
 
-          {/* Box 2: Ingredients List */}
           <div className="bg-white border border-stone-200 rounded-lg p-6 shadow-xs">
             <div className="flex items-center justify-between mb-1">
               <h2 className="text-base font-semibold text-stone-900">
@@ -264,16 +240,13 @@ export default function CreateRecipePage() {
               Define quantities, units, and ingredient naming.
             </p>
 
-            {/* Dynamic Ingredient Rows */}
             <div className="space-y-3 mb-4">
               {ingredients.map((item) => (
                 <div key={item.id} className="flex items-center gap-2">
-                  {/* Drag handle icon */}
                   <span className="text-stone-300 font-mono text-sm cursor-grab select-none px-1">
                     ⠿
                   </span>
 
-                  {/* Quantity input */}
                   <input
                     type="text"
                     placeholder="e.g. 200g or 2 tbsp"
@@ -282,7 +255,6 @@ export default function CreateRecipePage() {
                     className="w-28 sm:w-36 px-3 py-1.5 border border-stone-200 rounded bg-white text-xs text-stone-800 focus:outline-none focus:border-[#C2410C]"
                   />
 
-                  {/* Name input */}
                   <input
                     type="text"
                     placeholder="Ingredient description"
@@ -291,7 +263,6 @@ export default function CreateRecipePage() {
                     className="flex-1 px-3 py-1.5 border border-stone-200 rounded bg-white text-xs text-stone-800 focus:outline-none focus:border-[#C2410C]"
                   />
 
-                  {/* Delete row button */}
                   <button
                     type="button"
                     onClick={() => removeIngredientRow(item.id)}
@@ -304,7 +275,6 @@ export default function CreateRecipePage() {
               ))}
             </div>
 
-            {/* Add Row Button */}
             <button
               type="button"
               onClick={addIngredientRow}
@@ -315,7 +285,6 @@ export default function CreateRecipePage() {
             </button>
           </div>
 
-          {/* Bottom Actions Bar */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-stone-200">
             <span className="text-xs text-stone-500">
               Auto-saved locally 2m ago
@@ -337,11 +306,8 @@ export default function CreateRecipePage() {
               </button>
             </div>
           </div>
-
         </form>
-
       </main>
-
     </div>
   );
 }

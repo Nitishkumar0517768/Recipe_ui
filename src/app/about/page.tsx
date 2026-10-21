@@ -3,8 +3,6 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-10">
-      
-      {/* Breadcrumb */}
       <div className="text-xs text-stone-500 mb-6 flex items-center gap-2">
         <Link href="/recipes" className="hover:text-stone-800">Recipes</Link>
         <span>/</span>

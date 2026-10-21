@@ -5,15 +5,12 @@ import CuisineCard from "@/components/CuisineCard";
 import RecipeCard from "@/components/RecipeCard";
 
 export default function CuisinesPage() {
-  // Grab featured Asian recipes
   const featuredRecipes = recipesData.filter((r) =>
     ["vegetable-noodles", "miso-glazed-eggplant", "scallion-pancakes"].includes(r.slug)
   );
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-6">
-      
-      {/* Breadcrumb & Catch-all route indicator */}
       <div className="flex items-center justify-between text-xs text-stone-500 mb-6">
         <div className="flex items-center gap-2">
           <Link href="/cuisines" className="hover:text-stone-800">Cuisines</Link>
@@ -27,7 +24,6 @@ export default function CuisinesPage() {
         </div>
       </div>
 
-      {/* Header Info */}
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-2">
           <span className="text-[11px] font-semibold tracking-wider uppercase px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded">
@@ -58,7 +54,6 @@ export default function CuisinesPage() {
         </p>
       </div>
 
-      {/* Section 1: Sub-Regional Traditions */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-semibold text-stone-900">
@@ -76,7 +71,6 @@ export default function CuisinesPage() {
         </div>
       </section>
 
-      {/* Section 2: Featured Formulas */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -99,7 +93,6 @@ export default function CuisinesPage() {
         </div>
       </section>
 
-      {/* Section 3: Pantry Standard Box */}
       <div className="bg-stone-50 border border-stone-200 rounded-lg p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span className="text-[10px] tracking-wider uppercase font-semibold text-stone-500 block mb-1">
@@ -116,7 +109,6 @@ export default function CuisinesPage() {
           Read Pantry Guide
         </button>
       </div>
-
     </div>
   );
 }

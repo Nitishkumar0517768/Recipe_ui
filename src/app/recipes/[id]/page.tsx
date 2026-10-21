@@ -9,17 +9,14 @@ export default function RecipeDetailPage() {
   const params = useParams();
   const idOrSlug = params?.id as string;
 
-  // Find recipe by slug or id
   const recipe = recipesData.find(
     (r) => r.slug === idOrSlug || r.id === idOrSlug
   );
 
-  // If not found, trigger Next.js notFound()
   if (!recipe) {
     notFound();
   }
 
-  // State to track checked ingredients for interactive cooking experience
   const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({});
 
   const toggleIngredient = (id: string) => {
@@ -31,8 +28,6 @@ export default function RecipeDetailPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-6">
-      
-      {/* Breadcrumb and Back link */}
       <div className="flex items-center justify-between text-xs text-stone-500 mb-6">
         <div className="flex items-center gap-2">
           <Link href="/recipes" className="hover:text-stone-800">Recipes</Link>
@@ -50,12 +45,8 @@ export default function RecipeDetailPage() {
         </Link>
       </div>
 
-      {/* Hero Section: Details + Photo */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
-        
-        {/* Left Column: Title & Meta */}
         <div className="lg:col-span-8">
-          {/* Entry Tag */}
           <div className="text-[11px] font-mono tracking-wider uppercase text-stone-500 mb-2">
             <span className="px-2 py-0.5 bg-stone-100 border border-stone-200 rounded text-stone-700 font-medium mr-2">
               {recipe.entryNumber || "Entry #042"}
@@ -63,17 +54,14 @@ export default function RecipeDetailPage() {
             <span>CULINARY NOTEBOOK</span>
           </div>
 
-          {/* Recipe Title */}
           <h1 className="text-4xl font-bold tracking-tight text-stone-900 mb-3">
             {recipe.title}
           </h1>
 
-          {/* Description */}
           <p className="text-sm text-stone-600 leading-relaxed max-w-2xl mb-6">
             {recipe.description}
           </p>
 
-          {/* Meta Bar */}
           <div className="pt-4 border-t border-dashed border-stone-200 flex flex-wrap items-center gap-4 text-xs text-stone-600">
             <div>
               <span className="text-stone-400">Cuisine:</span>{" "}
@@ -97,7 +85,6 @@ export default function RecipeDetailPage() {
           </div>
         </div>
 
-        {/* Right Column: Recipe Picture Frame */}
         <div className="lg:col-span-4">
           <div className="border border-stone-200 p-2 bg-white rounded-lg shadow-xs">
             <div className="relative h-60 w-full overflow-hidden rounded bg-stone-100">
@@ -113,26 +100,20 @@ export default function RecipeDetailPage() {
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* Main 2-Column Section: Ingredients & Steps */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
-        {/* Left Column: Ingredients Card */}
         <div className="lg:col-span-4 bg-white border border-stone-200 rounded-lg p-5 shadow-xs">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-stone-900">Ingredients</h2>
             <span className="text-xs text-stone-500">{recipe.ingredients.length} Items</span>
           </div>
 
-          {/* Yield bar */}
           <div className="flex items-center justify-between py-1.5 px-3 bg-stone-50 border border-stone-200 rounded text-xs text-stone-600 mb-4">
             <span className="font-medium text-stone-800">{recipe.yieldInfo}</span>
             <span className="text-stone-500 font-mono">Scale: 1.0x</span>
           </div>
 
-          {/* Checkable Ingredients List */}
           <div className="space-y-3 mb-6">
             {recipe.ingredients.map((item) => {
               const isChecked = !!checkedItems[item.id];
@@ -156,26 +137,22 @@ export default function RecipeDetailPage() {
             })}
           </div>
 
-          {/* Tip Note */}
           <div className="pt-3 border-t border-dashed border-stone-200 text-[11px] text-stone-500 italic">
             Tip: Check off items as you mis-en-place.
           </div>
         </div>
 
-        {/* Right Column: Methodology & Execution */}
         <div className="lg:col-span-8 bg-white border border-stone-200 rounded-lg p-6 shadow-xs">
           <div className="flex items-center justify-between mb-6 pb-2 border-b border-stone-100">
             <h2 className="text-lg font-semibold text-stone-900">Methodology &amp; Execution</h2>
             <span className="text-xs text-stone-500">{recipe.steps.length} Sequential Steps</span>
           </div>
 
-          {/* Sequential Steps List */}
           <div className="divide-y divide-stone-100">
             {recipe.steps.map((step, index) => {
               const isLast = index === recipe.steps.length - 1;
               return (
                 <div key={step.stepNumber} className="py-5 first:pt-0 last:pb-6 flex items-start gap-4">
-                  {/* Step Number Badge */}
                   <div
                     className={`w-7 h-7 shrink-0 rounded flex items-center justify-center text-xs font-mono font-bold ${
                       isLast
@@ -186,7 +163,6 @@ export default function RecipeDetailPage() {
                     {step.stepNumber}
                   </div>
 
-                  {/* Step Content */}
                   <div>
                     <h3 className="text-sm font-semibold text-stone-900 mb-1">
                       {step.title}
@@ -200,7 +176,6 @@ export default function RecipeDetailPage() {
             })}
           </div>
 
-          {/* Bottom Execution Bar */}
           <div className="pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-orange-600"></span>
@@ -215,9 +190,7 @@ export default function RecipeDetailPage() {
             </Link>
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }

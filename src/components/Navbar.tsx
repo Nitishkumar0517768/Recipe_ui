@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 export default function Navbar() {
   const pathname = usePathname();
 
-  // Helper function to check if link is active
   const isActive = (path: string) => {
     if (path === "/recipes" && (pathname === "/" || pathname?.startsWith("/recipes"))) {
       return true;
@@ -17,8 +16,6 @@ export default function Navbar() {
   return (
     <header className="w-full bg-[#FCFAF6] border-b border-stone-200">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        
-        {/* Brand Logo */}
         <Link href="/recipes" className="flex items-center gap-3 group">
           <div className="w-7 h-7 bg-[#C2410C] text-white font-bold flex items-center justify-center rounded text-xs tracking-wider">
             ER
@@ -28,7 +25,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Center Navigation Links */}
         <nav className="flex items-center gap-8 text-sm font-medium">
           <Link
             href="/recipes"
@@ -62,7 +58,6 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        {/* Right CTA Button */}
         <div>
           <Link
             href="/create-recipe"
@@ -72,7 +67,6 @@ export default function Navbar() {
             <span>New Recipe</span>
           </Link>
         </div>
-
       </div>
     </header>
   );

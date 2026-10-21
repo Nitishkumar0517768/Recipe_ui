@@ -9,8 +9,6 @@ type RecipeCardProps = {
 export default function RecipeCard({ recipe, showSubtitleFormat = false }: RecipeCardProps) {
   return (
     <div className="bg-white border border-stone-200 rounded-lg overflow-hidden flex flex-col hover:border-stone-400 transition-all shadow-xs group">
-      
-      {/* Recipe Image */}
       <div className="relative h-44 w-full overflow-hidden bg-stone-100">
         <img
           src={recipe.image}
@@ -20,10 +18,7 @@ export default function RecipeCard({ recipe, showSubtitleFormat = false }: Recip
         />
       </div>
 
-      {/* Card Body */}
       <div className="p-4 flex flex-col flex-1">
-        
-        {/* Meta Line */}
         <div className="text-[11px] uppercase tracking-wide text-stone-500 mb-1.5 font-medium">
           {showSubtitleFormat ? (
             <span>{recipe.cuisine.toUpperCase()} TRADITION • {recipe.prepTime.toUpperCase()}</span>
@@ -32,17 +27,14 @@ export default function RecipeCard({ recipe, showSubtitleFormat = false }: Recip
           )}
         </div>
 
-        {/* Title */}
         <h3 className="text-base font-semibold text-stone-900 mb-1.5 line-clamp-1 group-hover:text-[#C2410C] transition-colors">
           {recipe.title}
         </h3>
 
-        {/* Description */}
         <p className="text-xs text-stone-600 line-clamp-2 leading-relaxed mb-4 flex-1">
           {recipe.description}
         </p>
 
-        {/* Card Footer */}
         <div className="pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
           <span>{recipe.yieldInfo}</span>
           <Link
@@ -53,9 +45,7 @@ export default function RecipeCard({ recipe, showSubtitleFormat = false }: Recip
             <span>→</span>
           </Link>
         </div>
-
       </div>
-
     </div>
   );
 }
